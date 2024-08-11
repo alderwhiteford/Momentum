@@ -1,0 +1,8 @@
+.DS_Store
+
+.vscode
+.trunk
+
+bin/
+
+node_modules
