@@ -3,12 +3,12 @@ name: Database Test
 on:
   pull_request:
       paths:
-        - backend/supabase/**"
+        - backend/supabase/**
   workflow_dispatch:
     
 
 jobs:
-  test:
+  test-supabase:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,7 +19,9 @@ jobs:
           version: latest
 
       - name: Start Supabase local development setup
-        run: supabase db start
+        run: |
+          cd backend
+          supabase db start
 
       - name: Verify generated types are checked in
         run: |

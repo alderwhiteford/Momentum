@@ -5,11 +5,11 @@ on:
     branches:
       - main
     paths:
-      - backend/supabase/**"
+      - backend/supabase/**
   workflow_dispatch:
 
 jobs:
-  deploy:
+  deploy-supabase:
     runs-on: ubuntu-latest
 
     env:
@@ -24,5 +24,7 @@ jobs:
         with:
           version: latest
 
-      - run: supabase link --project-ref $SUPABASE_PROJECT_ID
-      - run: supabase db push
+      - run: |
+          cd backend
+          supabase link --project-ref $SUPABASE_PROJECT_ID
+          supabase db push
