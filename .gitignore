@@ -3,6 +3,12 @@
 .vscode
 .trunk
 
+backend/supabase/.branches
+backend/supabase/.temp
+backend/supabase/.env
+
+.env
+
 bin/
 
 node_modules
