@@ -21,7 +21,7 @@ func NewUserService(db *storage.PostgresDB) UserService {
 }
 
 func (c *UserServiceImpl) GetAllUsers(ctx *fiber.Ctx) error {
-	users, err := getAllUsers(c.db);
+	users, err := getAllUsersFromDB(c.db);
 	if err != nil {
 		return utilities.InternalServerError(err.Error());
 	}
