@@ -8,7 +8,7 @@ on:
     
 
 jobs:
-  test:
+  test-supabase:
     runs-on: ubuntu-latest
 
     steps:

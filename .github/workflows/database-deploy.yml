@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  deploy-supabase:
     runs-on: ubuntu-latest
 
     env:
