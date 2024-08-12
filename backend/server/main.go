@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"momentum/server/services/user"
+	"momentum/server/storage"
 	"momentum/utilities"
 	"os"
 	"os/signal"
@@ -24,10 +26,15 @@ func createNewFiberApp() *fiber.App {
 	return app
 }
 
-func setupHealthCheck(app *fiber.App) {
+func initializeHealthCheck(app *fiber.App) {
 	app.Get("/health", func(ctx *fiber.Ctx) error {
 		return ctx.SendString("OK")
 	});
+}
+
+func initializeServices(app *fiber.App, db *storage.PostgresDB) {
+	// User service:
+	user.NewUserService(db).InitializeRoutes(app);
 }
 
 func gracefulShutdown(app *fiber.App) {
@@ -44,12 +51,19 @@ func gracefulShutdown(app *fiber.App) {
 }
 
 func main() {
-	app := createNewFiberApp()
+	// Initialize the app and settings:
+	app := createNewFiberApp();
+	settings := utilities.Settings("config");
+	
+	// Initialize the database
+	db := storage.NewPostgresDB(settings.Database);
+	defer db.Close()
 
-	// Handler setup:
-	setupHealthCheck(app)
+	// Initialize the handlers:
+	initializeHealthCheck(app);
+	initializeServices(app, db);
 
-	// TODO: Configure based on server configuration
+	// Start the server:
 	go func() {
 		app.Listen(":8080")
 	}()

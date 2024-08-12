@@ -20,3 +20,13 @@ build-dev:
 run:
 	@echo "Running backend..."
 	@./bin/momentum
+
+.PHONY:db-reset
+db-reset:
+	@echo "Resetting database..."
+	@npx supabase db reset
+
+.PHONY:db-start
+db-start:
+	@echo "Resetting database..."
+	@npx supabase start

@@ -23,8 +23,8 @@ func (e APIError) Error() string {
 	return fmt.Sprintf("api error: %d %v", e.StatusCode, e.Message)
 }
 
-func InternalServerError() APIError {
-	return NewAPIError(500, "Internal Server Error")
+func InternalServerError(msg string) APIError {
+	return NewAPIError(500, msg)
 }
 
 func ErrorHandler(ctx *fiber.Ctx, err error) error {
@@ -33,7 +33,7 @@ func ErrorHandler(ctx *fiber.Ctx, err error) error {
 	if castedErr, ok := err.(APIError); ok {
 		apiError = castedErr
 	} else {
-		apiError = InternalServerError()
+		apiError = InternalServerError("Failed to identify error type")
 	}
 
 	return ctx.Status(apiError.StatusCode).JSON(apiError)
