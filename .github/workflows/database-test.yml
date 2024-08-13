@@ -3,7 +3,7 @@ name: Database Test
 on:
   pull_request:
       paths:
-        - /backend/supabase
+        - 'backend/supabase/**'
   workflow_dispatch:
     
 
