@@ -3,7 +3,7 @@ name: Database Test
 on:
   pull_request:
       paths:
-        - backend/supabase/**
+        - 'backend/supabase/**'
   workflow_dispatch:
     
 
@@ -25,6 +25,7 @@ jobs:
 
       - name: Verify generated types are checked in
         run: |
+          cd backend
           supabase gen types typescript --local > types.gen.ts
           if ! git diff --ignore-space-at-eol --exit-code --quiet types.gen.ts; then
             echo "Detected uncommitted changes after build. See status below:"
