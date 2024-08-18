@@ -11,13 +11,10 @@ build-prod:
 	@echo "Building backend..."
 	@go build -tags prod -o bin/momentum server/main.go
 
-.PHONY:build-dev
-build-dev:
-	@echo "Building backend..."
-	@go build -tags dev -o bin/momentum server/main.go
-
 .PHONY:run
 run:
+	@echo "Building backend..."
+	@go build -tags dev -o bin/momentum server/main.go
 	@echo "Running backend..."
 	@./bin/momentum
 
@@ -30,3 +27,8 @@ db-reset:
 db-start:
 	@echo "Resetting database..."
 	@npx supabase start
+
+.PHONY:db-stop
+db-stop:
+	@echo "Resetting database..."
+	@npx supabase stop

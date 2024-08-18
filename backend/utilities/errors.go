@@ -27,6 +27,18 @@ func InternalServerError(msg string) APIError {
 	return NewAPIError(500, msg)
 }
 
+func BadRequest(msg string) APIError {
+	return NewAPIError(400, msg)
+}
+
+func Unauthorized(msg string) APIError {
+	return NewAPIError(401, msg)
+}
+
+func Forbidden(msg string) APIError {
+	return NewAPIError(403, msg)
+}
+
 func ErrorHandler(ctx *fiber.Ctx, err error) error {
 	var apiError APIError
 

@@ -1,4 +1,4 @@
-package user
+package userService
 
 import (
 	"momentum/server/storage"
@@ -8,7 +8,7 @@ import (
 )
 
 type UserService interface { 
-	InitializeRoutes(app *fiber.App)
+	InitializeRoutes(app *fiber.App, middleware fiber.Handler)
 	GetAllUsers(ctx *fiber.Ctx) error
 }
 
@@ -21,7 +21,7 @@ func NewUserService(db *storage.PostgresDB) UserService {
 }
 
 func (c *UserServiceImpl) GetAllUsers(ctx *fiber.Ctx) error {
-	users, err := getAllUsersFromDB(c.db);
+	users, err := GetAllUsersFromDB(c.db);
 	if err != nil {
 		return utilities.InternalServerError(err.Error());
 	}
