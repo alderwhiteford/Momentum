@@ -1,0 +1,707 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		448E0E722C6BA20900E346B0 /* MomentumIOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E0E712C6BA20900E346B0 /* MomentumIOSApp.swift */; };
+		448E0E742C6BA20900E346B0 /* MomentumAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E0E732C6BA20900E346B0 /* MomentumAppView.swift */; };
+		448E0E762C6BA20B00E346B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 448E0E752C6BA20B00E346B0 /* Assets.xcassets */; };
+		448E0E792C6BA20B00E346B0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 448E0E782C6BA20B00E346B0 /* Preview Assets.xcassets */; };
+		448E0E9D2C6BA6EC00E346B0 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 448E0E9C2C6BA6EC00E346B0 /* Auth */; };
+		448E0EA02C6BA71500E346B0 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E0E9F2C6BA71500E346B0 /* Config.swift */; };
+		448E0EA32C6BA94200E346B0 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 448E0EA22C6BA94200E346B0 /* Supabase */; };
+		448E0EA72C6BAB8D00E346B0 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E0EA62C6BAB8D00E346B0 /* AuthView.swift */; };
+		448E0EB02C6BAE8700E346B0 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 448E0EAF2C6BAE8700E346B0 /* GoogleSignIn */; };
+		448E0EB22C6BAE8700E346B0 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 448E0EB12C6BAE8700E346B0 /* GoogleSignInSwift */; };
+		448E0EB52C6BBB9B00E346B0 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E0EB42C6BBB9B00E346B0 /* AuthViewController.swift */; };
+		448E0EB82C6BBFAB00E346B0 /* GoogleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E0EB72C6BBFAB00E346B0 /* GoogleController.swift */; };
+		448E0EBA2C6BC63900E346B0 /* GoogleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E0EB92C6BC63900E346B0 /* GoogleButton.swift */; };
+		448E0EBF2C6BF25900E346B0 /* WorkSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 448E0EBC2C6BF25800E346B0 /* WorkSans-ExtraBold.ttf */; };
+		448E0EC02C6BF25900E346B0 /* WorkSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 448E0EBD2C6BF25800E346B0 /* WorkSans-Medium.ttf */; };
+		448E0EC12C6BF25900E346B0 /* WorkSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 448E0EBE2C6BF25900E346B0 /* WorkSans-Regular.ttf */; };
+		448E0EC42C6BF4DD00E346B0 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E0EC32C6BF4DD00E346B0 /* Typography.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		448E0E7F2C6BA20B00E346B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 448E0E662C6BA20900E346B0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 448E0E6D2C6BA20900E346B0;
+			remoteInfo = MomentumIOS;
+		};
+		448E0E892C6BA20B00E346B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 448E0E662C6BA20900E346B0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 448E0E6D2C6BA20900E346B0;
+			remoteInfo = MomentumIOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		448E0E6E2C6BA20900E346B0 /* MomentumIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MomentumIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		448E0E712C6BA20900E346B0 /* MomentumIOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentumIOSApp.swift; sourceTree = "<group>"; };
+		448E0E732C6BA20900E346B0 /* MomentumAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentumAppView.swift; sourceTree = "<group>"; };
+		448E0E752C6BA20B00E346B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		448E0E782C6BA20B00E346B0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		448E0E7E2C6BA20B00E346B0 /* MomentumIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomentumIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		448E0E882C6BA20B00E346B0 /* MomentumIOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomentumIOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		448E0E9F2C6BA71500E346B0 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		448E0EA62C6BAB8D00E346B0 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		448E0EB32C6BB7D500E346B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		448E0EB42C6BBB9B00E346B0 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		448E0EB72C6BBFAB00E346B0 /* GoogleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleController.swift; sourceTree = "<group>"; };
+		448E0EB92C6BC63900E346B0 /* GoogleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleButton.swift; sourceTree = "<group>"; };
+		448E0EBC2C6BF25800E346B0 /* WorkSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "WorkSans-ExtraBold.ttf"; path = "../../../../../../Downloads/Work_Sans/static/WorkSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		448E0EBD2C6BF25800E346B0 /* WorkSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "WorkSans-Medium.ttf"; path = "../../../../../../Downloads/Work_Sans/static/WorkSans-Medium.ttf"; sourceTree = "<group>"; };
+		448E0EBE2C6BF25900E346B0 /* WorkSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "WorkSans-Regular.ttf"; path = "../../../../../../Downloads/Work_Sans/static/WorkSans-Regular.ttf"; sourceTree = "<group>"; };
+		448E0EC32C6BF4DD00E346B0 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		448E0E6B2C6BA20900E346B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				448E0EA32C6BA94200E346B0 /* Supabase in Frameworks */,
+				448E0E9D2C6BA6EC00E346B0 /* Auth in Frameworks */,
+				448E0EB02C6BAE8700E346B0 /* GoogleSignIn in Frameworks */,
+				448E0EB22C6BAE8700E346B0 /* GoogleSignInSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		448E0E7B2C6BA20B00E346B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		448E0E852C6BA20B00E346B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		448E0E652C6BA20900E346B0 = {
+			isa = PBXGroup;
+			children = (
+				448E0E702C6BA20900E346B0 /* MomentumIOS */,
+				448E0E6F2C6BA20900E346B0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		448E0E6F2C6BA20900E346B0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				448E0E6E2C6BA20900E346B0 /* MomentumIOS.app */,
+				448E0E7E2C6BA20B00E346B0 /* MomentumIOSTests.xctest */,
+				448E0E882C6BA20B00E346B0 /* MomentumIOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		448E0E702C6BA20900E346B0 /* MomentumIOS */ = {
+			isa = PBXGroup;
+			children = (
+				448E0EC22C6BF4CC00E346B0 /* DesignSystem */,
+				448E0EBB2C6BF16500E346B0 /* Font */,
+				448E0EB32C6BB7D500E346B0 /* Info.plist */,
+				448E0EA42C6BAB7200E346B0 /* Views */,
+				448E0E9E2C6BA6FF00E346B0 /* Supabase */,
+				448E0E712C6BA20900E346B0 /* MomentumIOSApp.swift */,
+				448E0E732C6BA20900E346B0 /* MomentumAppView.swift */,
+				448E0E752C6BA20B00E346B0 /* Assets.xcassets */,
+				448E0E772C6BA20B00E346B0 /* Preview Content */,
+			);
+			path = MomentumIOS;
+			sourceTree = "<group>";
+		};
+		448E0E772C6BA20B00E346B0 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				448E0E782C6BA20B00E346B0 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		448E0E9E2C6BA6FF00E346B0 /* Supabase */ = {
+			isa = PBXGroup;
+			children = (
+				448E0E9F2C6BA71500E346B0 /* Config.swift */,
+			);
+			path = Supabase;
+			sourceTree = "<group>";
+		};
+		448E0EA42C6BAB7200E346B0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				448E0EA52C6BAB7E00E346B0 /* Auth */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		448E0EA52C6BAB7E00E346B0 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				448E0EB62C6BBF9600E346B0 /* Google */,
+				448E0EA62C6BAB8D00E346B0 /* AuthView.swift */,
+				448E0EB42C6BBB9B00E346B0 /* AuthViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		448E0EB62C6BBF9600E346B0 /* Google */ = {
+			isa = PBXGroup;
+			children = (
+				448E0EB72C6BBFAB00E346B0 /* GoogleController.swift */,
+				448E0EB92C6BC63900E346B0 /* GoogleButton.swift */,
+			);
+			path = Google;
+			sourceTree = "<group>";
+		};
+		448E0EBB2C6BF16500E346B0 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				448E0EBC2C6BF25800E346B0 /* WorkSans-ExtraBold.ttf */,
+				448E0EBD2C6BF25800E346B0 /* WorkSans-Medium.ttf */,
+				448E0EBE2C6BF25900E346B0 /* WorkSans-Regular.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		448E0EC22C6BF4CC00E346B0 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				448E0EC32C6BF4DD00E346B0 /* Typography.swift */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		448E0E6D2C6BA20900E346B0 /* MomentumIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 448E0E922C6BA20B00E346B0 /* Build configuration list for PBXNativeTarget "MomentumIOS" */;
+			buildPhases = (
+				448E0E6A2C6BA20900E346B0 /* Sources */,
+				448E0E6B2C6BA20900E346B0 /* Frameworks */,
+				448E0E6C2C6BA20900E346B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MomentumIOS;
+			packageProductDependencies = (
+				448E0E9C2C6BA6EC00E346B0 /* Auth */,
+				448E0EA22C6BA94200E346B0 /* Supabase */,
+				448E0EAF2C6BAE8700E346B0 /* GoogleSignIn */,
+				448E0EB12C6BAE8700E346B0 /* GoogleSignInSwift */,
+			);
+			productName = MomentumIOS;
+			productReference = 448E0E6E2C6BA20900E346B0 /* MomentumIOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		448E0E7D2C6BA20B00E346B0 /* MomentumIOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 448E0E952C6BA20B00E346B0 /* Build configuration list for PBXNativeTarget "MomentumIOSTests" */;
+			buildPhases = (
+				448E0E7A2C6BA20B00E346B0 /* Sources */,
+				448E0E7B2C6BA20B00E346B0 /* Frameworks */,
+				448E0E7C2C6BA20B00E346B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				448E0E802C6BA20B00E346B0 /* PBXTargetDependency */,
+			);
+			name = MomentumIOSTests;
+			productName = MomentumIOSTests;
+			productReference = 448E0E7E2C6BA20B00E346B0 /* MomentumIOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		448E0E872C6BA20B00E346B0 /* MomentumIOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 448E0E982C6BA20B00E346B0 /* Build configuration list for PBXNativeTarget "MomentumIOSUITests" */;
+			buildPhases = (
+				448E0E842C6BA20B00E346B0 /* Sources */,
+				448E0E852C6BA20B00E346B0 /* Frameworks */,
+				448E0E862C6BA20B00E346B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				448E0E8A2C6BA20B00E346B0 /* PBXTargetDependency */,
+			);
+			name = MomentumIOSUITests;
+			productName = MomentumIOSUITests;
+			productReference = 448E0E882C6BA20B00E346B0 /* MomentumIOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		448E0E662C6BA20900E346B0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					448E0E6D2C6BA20900E346B0 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					448E0E7D2C6BA20B00E346B0 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = 448E0E6D2C6BA20900E346B0;
+					};
+					448E0E872C6BA20B00E346B0 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = 448E0E6D2C6BA20900E346B0;
+					};
+				};
+			};
+			buildConfigurationList = 448E0E692C6BA20900E346B0 /* Build configuration list for PBXProject "MomentumIOS" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 448E0E652C6BA20900E346B0;
+			packageReferences = (
+				448E0E9B2C6BA6EC00E346B0 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				448E0EAE2C6BAE8700E346B0 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
+			productRefGroup = 448E0E6F2C6BA20900E346B0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				448E0E6D2C6BA20900E346B0 /* MomentumIOS */,
+				448E0E7D2C6BA20B00E346B0 /* MomentumIOSTests */,
+				448E0E872C6BA20B00E346B0 /* MomentumIOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		448E0E6C2C6BA20900E346B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				448E0E792C6BA20B00E346B0 /* Preview Assets.xcassets in Resources */,
+				448E0EC02C6BF25900E346B0 /* WorkSans-Medium.ttf in Resources */,
+				448E0EBF2C6BF25900E346B0 /* WorkSans-ExtraBold.ttf in Resources */,
+				448E0E762C6BA20B00E346B0 /* Assets.xcassets in Resources */,
+				448E0EC12C6BF25900E346B0 /* WorkSans-Regular.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		448E0E7C2C6BA20B00E346B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		448E0E862C6BA20B00E346B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		448E0E6A2C6BA20900E346B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				448E0EB82C6BBFAB00E346B0 /* GoogleController.swift in Sources */,
+				448E0E742C6BA20900E346B0 /* MomentumAppView.swift in Sources */,
+				448E0EC42C6BF4DD00E346B0 /* Typography.swift in Sources */,
+				448E0E722C6BA20900E346B0 /* MomentumIOSApp.swift in Sources */,
+				448E0EBA2C6BC63900E346B0 /* GoogleButton.swift in Sources */,
+				448E0EB52C6BBB9B00E346B0 /* AuthViewController.swift in Sources */,
+				448E0EA72C6BAB8D00E346B0 /* AuthView.swift in Sources */,
+				448E0EA02C6BA71500E346B0 /* Config.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		448E0E7A2C6BA20B00E346B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		448E0E842C6BA20B00E346B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		448E0E802C6BA20B00E346B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 448E0E6D2C6BA20900E346B0 /* MomentumIOS */;
+			targetProxy = 448E0E7F2C6BA20B00E346B0 /* PBXContainerItemProxy */;
+		};
+		448E0E8A2C6BA20B00E346B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 448E0E6D2C6BA20900E346B0 /* MomentumIOS */;
+			targetProxy = 448E0E892C6BA20B00E346B0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		448E0E902C6BA20B00E346B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		448E0E912C6BA20B00E346B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		448E0E932C6BA20B00E346B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MomentumIOS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MomentumIOS/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = work.whiteford.MomentumIOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		448E0E942C6BA20B00E346B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MomentumIOS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MomentumIOS/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = work.whiteford.MomentumIOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		448E0E962C6BA20B00E346B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = work.whiteford.MomentumIOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MomentumIOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MomentumIOS";
+			};
+			name = Debug;
+		};
+		448E0E972C6BA20B00E346B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = work.whiteford.MomentumIOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MomentumIOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MomentumIOS";
+			};
+			name = Release;
+		};
+		448E0E992C6BA20B00E346B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = work.whiteford.MomentumIOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MomentumIOS;
+			};
+			name = Debug;
+		};
+		448E0E9A2C6BA20B00E346B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = work.whiteford.MomentumIOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MomentumIOS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		448E0E692C6BA20900E346B0 /* Build configuration list for PBXProject "MomentumIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				448E0E902C6BA20B00E346B0 /* Debug */,
+				448E0E912C6BA20B00E346B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		448E0E922C6BA20B00E346B0 /* Build configuration list for PBXNativeTarget "MomentumIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				448E0E932C6BA20B00E346B0 /* Debug */,
+				448E0E942C6BA20B00E346B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		448E0E952C6BA20B00E346B0 /* Build configuration list for PBXNativeTarget "MomentumIOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				448E0E962C6BA20B00E346B0 /* Debug */,
+				448E0E972C6BA20B00E346B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		448E0E982C6BA20B00E346B0 /* Build configuration list for PBXNativeTarget "MomentumIOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				448E0E992C6BA20B00E346B0 /* Debug */,
+				448E0E9A2C6BA20B00E346B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		448E0E9B2C6BA6EC00E346B0 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+		448E0EAE2C6BAE8700E346B0 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		448E0E9C2C6BA6EC00E346B0 /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 448E0E9B2C6BA6EC00E346B0 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Auth;
+		};
+		448E0EA22C6BA94200E346B0 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 448E0E9B2C6BA6EC00E346B0 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+		448E0EAF2C6BAE8700E346B0 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 448E0EAE2C6BAE8700E346B0 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		448E0EB12C6BAE8700E346B0 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 448E0EAE2C6BAE8700E346B0 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 448E0E662C6BA20900E346B0 /* Project object */;
+}
