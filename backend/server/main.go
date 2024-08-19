@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"momentum/middleware"
+	"momentum/server/services/auth"
 	"momentum/server/services/user"
 	"momentum/server/storage"
 	"momentum/utilities"
@@ -12,6 +14,7 @@ import (
 	go_json "github.com/goccy/go-json"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func createNewFiberApp() *fiber.App {
@@ -26,15 +29,32 @@ func createNewFiberApp() *fiber.App {
 	return app
 }
 
+func initializeBaseMiddleware(app *fiber.App, settings utilities.ApplicationSettings) {
+	// Setup CORS middleware:
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "http://localhost:3000",
+		AllowHeaders: "Origin, Content-Type, Accept, Authorization",
+	}))
+
+	// Middleware for validating tokens:
+	app.Use(middleware.NewToken(settings.AuthSettings))
+}
+
 func initializeHealthCheck(app *fiber.App) {
 	app.Get("/health", func(ctx *fiber.Ctx) error {
 		return ctx.SendString("OK")
 	});
 }
 
-func initializeServices(app *fiber.App, db *storage.PostgresDB) {
+func initializeServices(app *fiber.App, db *storage.PostgresDB, settings utilities.ApplicationSettings) {
 	// User service:
-	user.NewUserService(db).InitializeRoutes(app);
+	userService := userService.NewUserService(db);
+	userMiddleware := middleware.NewUser(settings.AuthSettings);
+	userService.InitializeRoutes(app, userMiddleware);
+	
+	// Auth service:
+	authService := authService.NewAuthService(db, settings.AuthSettings);
+	authService.InitializeRoutes(app);
 }
 
 func gracefulShutdown(app *fiber.App) {
@@ -54,6 +74,9 @@ func main() {
 	// Initialize the app and settings:
 	app := createNewFiberApp();
 	settings := utilities.Settings("config");
+
+	// Initialize the middleware:
+	initializeBaseMiddleware(app, settings);
 	
 	// Initialize the database
 	db := storage.NewPostgresDB(settings.Database);
@@ -61,7 +84,7 @@ func main() {
 
 	// Initialize the handlers:
 	initializeHealthCheck(app);
-	initializeServices(app, db);
+	initializeServices(app, db, settings);
 
 	// Start the server:
 	go func() {

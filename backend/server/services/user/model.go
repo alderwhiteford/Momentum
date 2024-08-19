@@ -1,12 +1,14 @@
-package user
+package userService
 
-import (
-	"github.com/google/uuid"
+type Provider string
+const (
+	Google Provider = "google"
 )
 
 type User struct {
-	ID 			uuid.UUID 	`json:"user_id" db:"user_id"`
-	CreatedAt 	string 		`json:"created_at" db:"created_at"`
-	FirstName 	string		`json:"first_name" db:"first_name"`
-	LastName 	string 		`json:"last_name" db:"last_name"`
+	ID 			string 			`json:"user_id" db:"user_id"`
+	CreatedAt 	string 			`json:"created_at" db:"created_at"`
+	Provider 	Provider 		`json:"provider" db:"provider"`
+	Email 		string 			`json:"email" db:"email"`
+	Name 		string			`json:"name" db:"name"`
 }
