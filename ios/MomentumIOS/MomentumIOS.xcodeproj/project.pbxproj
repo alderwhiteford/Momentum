@@ -17,7 +17,6 @@
 		448E0EA72C6BAB8D00E346B0 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E0EA62C6BAB8D00E346B0 /* AuthView.swift */; };
 		448E0EB02C6BAE8700E346B0 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 448E0EAF2C6BAE8700E346B0 /* GoogleSignIn */; };
 		448E0EB22C6BAE8700E346B0 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 448E0EB12C6BAE8700E346B0 /* GoogleSignInSwift */; };
-		448E0EB52C6BBB9B00E346B0 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E0EB42C6BBB9B00E346B0 /* AuthViewController.swift */; };
 		448E0EB82C6BBFAB00E346B0 /* GoogleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E0EB72C6BBFAB00E346B0 /* GoogleController.swift */; };
 		448E0EBA2C6BC63900E346B0 /* GoogleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448E0EB92C6BC63900E346B0 /* GoogleButton.swift */; };
 		448E0EBF2C6BF25900E346B0 /* WorkSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 448E0EBC2C6BF25800E346B0 /* WorkSans-ExtraBold.ttf */; };
@@ -54,7 +53,6 @@
 		448E0E9F2C6BA71500E346B0 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		448E0EA62C6BAB8D00E346B0 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		448E0EB32C6BB7D500E346B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		448E0EB42C6BBB9B00E346B0 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		448E0EB72C6BBFAB00E346B0 /* GoogleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleController.swift; sourceTree = "<group>"; };
 		448E0EB92C6BC63900E346B0 /* GoogleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleButton.swift; sourceTree = "<group>"; };
 		448E0EBC2C6BF25800E346B0 /* WorkSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "WorkSans-ExtraBold.ttf"; path = "../../../../../../Downloads/Work_Sans/static/WorkSans-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -155,7 +153,6 @@
 			children = (
 				448E0EB62C6BBF9600E346B0 /* Google */,
 				448E0EA62C6BAB8D00E346B0 /* AuthView.swift */,
-				448E0EB42C6BBB9B00E346B0 /* AuthViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -335,7 +332,6 @@
 				448E0EC42C6BF4DD00E346B0 /* Typography.swift in Sources */,
 				448E0E722C6BA20900E346B0 /* MomentumIOSApp.swift in Sources */,
 				448E0EBA2C6BC63900E346B0 /* GoogleButton.swift in Sources */,
-				448E0EB52C6BBB9B00E346B0 /* AuthViewController.swift in Sources */,
 				448E0EA72C6BAB8D00E346B0 /* AuthView.swift in Sources */,
 				448E0EA02C6BA71500E346B0 /* Config.swift in Sources */,
 			);
