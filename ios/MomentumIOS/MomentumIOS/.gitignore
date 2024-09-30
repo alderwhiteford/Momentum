@@ -1,11 +1,13 @@
 .DS_Store
-xcuserdata/
-DerivedData/
+*.swp
+*.lock
 *.xcuserstate
-build/
-*.xcscheme
-xcschememanagement.plist
-UserInterfaceState.xcuserstate
+*.xcuserdata
+*.xcscmblueprint
+DerivedData/
+*.moved-aside
+*.xccheckout
+*.playground*
 
 # CocoaPods
 Pods/
