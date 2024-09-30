@@ -12,3 +12,16 @@ backend/supabase/.env
 bin/
 
 node_modules
+
+# XCode
+.DS_Store
+xcuserdata/
+DerivedData/
+*.xcuserstate
+build/
+*.xcscheme
+xcschememanagement.plist
+
+# CocoaPods
+Pods/
+
