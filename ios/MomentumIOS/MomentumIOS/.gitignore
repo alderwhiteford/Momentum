@@ -3,6 +3,8 @@ xcuserdata/
 DerivedData/
 *.xcuserstate
 build/
+*.xcscheme
+xcschememanagement.plist
 
 # CocoaPods
 Pods/
