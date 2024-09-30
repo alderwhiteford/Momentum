@@ -8,17 +8,43 @@
 import SwiftUI
 import GoogleSignIn
 
-struct MomentumAppView: View {  
+enum ViewType {
+    case home
+    case auth
+}
 
+struct MomentumAppView: View {  
+    @EnvironmentObject var authManager: AuthManager
+    @EnvironmentObject var errorManager: ErrorManager
+        
     var body: some View {
         ZStack {
             Color("Background")
                 .ignoresSafeArea()
             
             VStack {
-                AuthView()
+                if authManager.session != nil {
+                    HomeView()
+                        .transition(.slide)
+                } else {
+                    AuthView()
+                        .transition(.slide)
+                }
             }
-            .padding(10)
+            .ignoresSafeArea()
+            
+            VStack {
+                if errorManager.errorMessage != "" {
+                    VStack {
+                        Spacer().frame(height: 5)
+                        ErrorBanner(props: ErrorBannerProps(message: errorManager.errorMessage))
+                        Spacer()
+                    }
+                    .transition(.move(edge: .top).combined(with: .opacity))
+                }
+            }
+            .animation(.easeInOut(duration: 1), value: errorManager.errorMessage)
+            .zIndex(1)
         }
     }
 }
