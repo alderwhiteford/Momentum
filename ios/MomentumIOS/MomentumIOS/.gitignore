@@ -5,6 +5,7 @@ DerivedData/
 build/
 *.xcscheme
 xcschememanagement.plist
+UserInterfaceState.xcuserstate
 
 # CocoaPods
 Pods/
