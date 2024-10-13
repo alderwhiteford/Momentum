@@ -19,8 +19,8 @@ struct ErrorBanner: View {
         self.props = props
         
         if props.message.count > 30 {
-            var startIndex = self.props.message.startIndex
-            var endIndex = self.props.message.index(startIndex, offsetBy: 30)
+            let startIndex = self.props.message.startIndex
+            let endIndex = self.props.message.index(startIndex, offsetBy: 30)
             self.props.message = String(self.props.message[startIndex..<endIndex]) + "..."
         }
     }

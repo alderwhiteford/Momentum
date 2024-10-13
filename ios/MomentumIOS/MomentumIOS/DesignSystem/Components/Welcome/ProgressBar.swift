@@ -44,15 +44,13 @@ struct ProgressBar: View {
                 ForEach(0..<self.numberOfSteps, id: \.self) { index in
                     VStack{
                         if index == currentStep {
-                            BezierPathShape(progress: progress * CGFloat(currentStep))
+                            BezierPathShape(progress: progress * CGFloat(1))
                                 .stroke(Color("MomentumPrimary"), lineWidth: 8)
                                 .frame(height: 8)
                                 .onAppear {
-                                    print("Hello world")
                                     animateProgress()
                                 }
                                 .onChange(of: currentStep) { () in
-                                    print("Current step updated!!")
                                     resetAndAnimateProgress()
                                 }
                         }

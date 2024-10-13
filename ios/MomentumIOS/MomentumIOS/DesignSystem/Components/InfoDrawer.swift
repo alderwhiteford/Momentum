@@ -89,6 +89,8 @@ struct InfoDrawer: View {
                 },
                 disabled: false,
                 icon: Image(.information),
+                color: nil,
+                alignment: nil,
                 variant: MomentumButtonVariant.none
             ))
             }

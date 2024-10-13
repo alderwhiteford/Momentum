@@ -38,7 +38,7 @@ struct HomeView: View {
 //            .buttonStyle(SSOButtonStyling())
 //            .frame(alignment: .bottom)
 //        }.frame(maxHeight: .infinity)
-        WelcomeView()
+        HomeSubview()
     }
 }
 

@@ -8,12 +8,6 @@
 import Foundation
 import SwiftUI
 
-enum SuccessIndicators: String {
-    case target
-    case satisfied
-    case completion
-}
-
 struct WelcomeFormView: View {
     // Form state:
     @Binding var state: Int
@@ -23,9 +17,9 @@ struct WelcomeFormView: View {
     
     // Form variables:
     @State var goal: String = ""
-    @State var date: Date = Date.now
-    @State var why: String = ""
-    @State var successIndicators: [SuccessIndicators] = []
+    @State var estimatedCompletionAt: Date = Date.now
+    @State var theWhy: String = ""
+    @State var whenSuccess: [SuccessIndicators] = []
     
     // The Content for each of the pages:
     let pagesContent: [WelcomeForm] = [
@@ -35,13 +29,17 @@ struct WelcomeFormView: View {
         WelcomePageFiveContent,
     ]
     
+    func onSubmit() -> Void {
+        return
+    }
+    
     var body: some View {
         // The Content for this view
         let viewContent = pagesContent[state - 1]
         
         // The state associated with this view
-        let viewState: Any = [$goal, $date, $why, $successIndicators][state - 1]
-        
+        let viewState: Any = [$goal, $estimatedCompletionAt, $theWhy, $whenSuccess][state - 1]
+                
         GeometryReader { geometry in
             VStack {
                 VStack(alignment: .leading) {
@@ -63,6 +61,8 @@ struct WelcomeFormView: View {
                             },
                             disabled: false,
                             icon: Image("back"),
+                            color: nil,
+                            alignment: nil,
                             variant: MomentumButtonVariant.none))
                     }
                     
@@ -96,6 +96,39 @@ struct WelcomeFormView: View {
                     if viewContent.formInput == WelcomeFormInput.date {
                         Calendar(date: viewState as! Binding<Date>)
                     }
+                    
+                    if viewContent.formInput == WelcomeFormInput.select {
+                        MomentumButton(props: MomentumButtonProps(
+                            id: "achieve-success",
+                            displayName: "When I complete or achieve something",
+                            onClick: onSubmit,
+                            disabled: false,
+                            icon: Image(.check),
+                            color: .container,
+                            alignment: .leading,
+                            variant: .filled)
+                        )
+                        MomentumButton(props: MomentumButtonProps(
+                            id: "target-success",
+                            displayName: "When I reach a target metric",
+                            onClick: onSubmit,
+                            disabled: false,
+                            icon: Image(.target),
+                            color: .container,
+                            alignment: .leading,
+                            variant: .filled)
+                        )
+                        MomentumButton(props: MomentumButtonProps(
+                            id: "satisfy-success",
+                            displayName: "When I feel satisfied",
+                            onClick: onSubmit,
+                            disabled: false,
+                            icon: Image(.satisfy),
+                            color: .container,
+                            alignment: .leading,
+                            variant: .filled)
+                        )
+                    }
 
                     if let subInput = viewContent.formInputSubText {
                         Spacer().frame(maxHeight: 8)
@@ -122,6 +155,8 @@ struct WelcomeFormView: View {
                             },
                             disabled: goal.isEmpty,
                             icon: nil,
+                            color: nil,
+                            alignment: nil,
                             variant: MomentumButtonVariant.filled
                         ))
                     }
@@ -142,8 +177,20 @@ struct WelcomeFormView: View {
             .background(Color("Background"))
             .foregroundColor(Color("Background-On"))
             .ignoresSafeArea()
+            .onAppear {
+                print(state)
+            }
         }
     }    
 }
 
+struct PreviewProvider: View {
+    @State private var settingState: Int = 4
+    var body: some View {
+        WelcomeFormView(state: $settingState)
+    }
+}
 
+#Preview {
+    PreviewProvider()
+}

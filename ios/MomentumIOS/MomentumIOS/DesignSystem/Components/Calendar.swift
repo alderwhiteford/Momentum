@@ -20,5 +20,6 @@ struct Calendar: View {
         )
         .datePickerStyle(.automatic)
         .colorScheme(.dark)
+        .accentColor(.primaryContainerOn)
     }
 }
