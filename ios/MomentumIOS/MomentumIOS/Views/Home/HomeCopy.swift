@@ -7,6 +7,13 @@
 
 import Foundation
 
+struct WelcomeStepTag: Identifiable {
+    let title: String
+    let subTitle: String
+    let icon: String
+    var id: String { title }
+}
+
 struct WelcomeInitial {
     let title: String
     let stepTags: [WelcomeStepTag]

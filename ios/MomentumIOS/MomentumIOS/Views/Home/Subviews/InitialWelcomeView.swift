@@ -8,13 +8,6 @@
 import Foundation
 import SwiftUI
 
-struct WelcomeStepTag: Identifiable {
-    let title: String
-    let subTitle: String
-    let icon: String
-    var id: String { title }
-}
-
 struct InitialWelcomeView: View {
     @Binding var state: Int
     
@@ -47,6 +40,8 @@ struct InitialWelcomeView: View {
                     },
                     disabled: false,
                     icon: nil,
+                    color: nil,
+                    alignment: nil,
                     variant: MomentumButtonVariant.filled
                 ))
             }

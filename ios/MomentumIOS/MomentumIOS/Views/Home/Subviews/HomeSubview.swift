@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 
-struct WelcomeView: View {
+struct HomeSubview: View {
     @State private var settingState: Int = 0
     
     var body: some View {
@@ -22,6 +22,6 @@ struct WelcomeView: View {
 }
 
 #Preview {
-    WelcomeView()
+    HomeSubview()
 }
 
