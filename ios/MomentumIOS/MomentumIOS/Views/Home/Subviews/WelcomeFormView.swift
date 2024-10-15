@@ -19,7 +19,7 @@ struct WelcomeFormView: View {
     @State var goal: String = ""
     @State var estimatedCompletionAt: Date = Date.now
     @State var theWhy: String = ""
-    @State var whenSuccess: [SuccessIndicators] = []
+    @State var whenSuccess: SuccessIndicators = SuccessIndicators.target
     
     // The Content for each of the pages:
     let pagesContent: [WelcomeForm] = [
@@ -30,7 +30,21 @@ struct WelcomeFormView: View {
     ]
     
     func onSubmit() -> Void {
-        return
+        print(goal)
+        print(estimatedCompletionAt)
+        print(theWhy)
+        print(whenSuccess)
+    }
+    
+    func nextDisabled() -> Bool {
+        if state == 1 {
+            return goal.isEmpty
+        }
+        if state == 3 {
+            return theWhy.isEmpty
+        }
+        
+        return false
     }
     
     var body: some View {
@@ -76,58 +90,64 @@ struct WelcomeFormView: View {
                     
                     Spacer().frame(maxHeight: 24)
                     
-                    if viewContent.formInput == WelcomeFormInput.text {
-                        TextField(
-                            viewContent.formInputText ?? "",
-                            text: viewState as! Binding<String>,
-                            axis: .vertical
-                        )
-                        .padding(12)
-                        .textInputAutocapitalization(.never)
-                        .disableAutocorrection(true)
-                        .clipShape(RoundedRectangle(cornerRadius: 4))
-                        .font(.appCaption)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 4)
-                                .stroke(Color("Outline-Dark"), lineWidth: 1)
-                        )
-                    }
-                    
-                    if viewContent.formInput == WelcomeFormInput.date {
-                        Calendar(date: viewState as! Binding<Date>)
-                    }
-                    
-                    if viewContent.formInput == WelcomeFormInput.select {
-                        MomentumButton(props: MomentumButtonProps(
-                            id: "achieve-success",
-                            displayName: "When I complete or achieve something",
-                            onClick: onSubmit,
-                            disabled: false,
-                            icon: Image(.check),
-                            color: .container,
-                            alignment: .leading,
-                            variant: .filled)
-                        )
-                        MomentumButton(props: MomentumButtonProps(
-                            id: "target-success",
-                            displayName: "When I reach a target metric",
-                            onClick: onSubmit,
-                            disabled: false,
-                            icon: Image(.target),
-                            color: .container,
-                            alignment: .leading,
-                            variant: .filled)
-                        )
-                        MomentumButton(props: MomentumButtonProps(
-                            id: "satisfy-success",
-                            displayName: "When I feel satisfied",
-                            onClick: onSubmit,
-                            disabled: false,
-                            icon: Image(.satisfy),
-                            color: .container,
-                            alignment: .leading,
-                            variant: .filled)
-                        )
+                    switch (viewContent.formInput) {
+                        case WelcomeFormInput.text:
+                            TextField(
+                                viewContent.formInputText ?? "",
+                                text: viewState as! Binding<String>,
+                                axis: .vertical
+                            )
+                            .padding(12)
+                            .textInputAutocapitalization(.never)
+                            .disableAutocorrection(true)
+                            .clipShape(RoundedRectangle(cornerRadius: 4))
+                            .font(.appCaption)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 4)
+                                    .stroke(Color("Outline-Dark"), lineWidth: 1)
+                            )
+                        case WelcomeFormInput.select:
+                            MomentumButton(props: MomentumButtonProps(
+                                id: "achieve-success",
+                                displayName: "When I complete or achieve something",
+                                onClick: {
+                                    whenSuccess = SuccessIndicators.completion
+                                    onSubmit()
+                                },
+                                disabled: false,
+                                icon: Image(.check),
+                                color: .container,
+                                alignment: .leading,
+                                variant: .filled)
+                            )
+                            MomentumButton(props: MomentumButtonProps(
+                                id: "target-success",
+                                displayName: "When I reach a target metric",
+                                onClick: {
+                                    whenSuccess = SuccessIndicators.target
+                                    onSubmit()
+                                },
+                                disabled: false,
+                                icon: Image(.target),
+                                color: .container,
+                                alignment: .leading,
+                                variant: .filled)
+                            )
+                            MomentumButton(props: MomentumButtonProps(
+                                id: "satisfy-success",
+                                displayName: "When I feel satisfied",
+                                onClick: {
+                                    whenSuccess = SuccessIndicators.satisfied
+                                    onSubmit()
+                                },
+                                disabled: false,
+                                icon: Image(.satisfy),
+                                color: .container,
+                                alignment: .leading,
+                                variant: .filled)
+                            )
+                        case WelcomeFormInput.date:
+                            Calendar(date: viewState as! Binding<Date>)
                     }
 
                     if let subInput = viewContent.formInputSubText {
@@ -153,7 +173,7 @@ struct WelcomeFormView: View {
                                 state = state + 1
                                 progressBarState = 0
                             },
-                            disabled: goal.isEmpty,
+                            disabled: nextDisabled(),
                             icon: nil,
                             color: nil,
                             alignment: nil,
