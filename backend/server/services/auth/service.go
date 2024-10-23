@@ -27,20 +27,20 @@ func NewAuthService(db *storage.PostgresDB, authSettings utilities.AuthSettings)
 }
 
 func (c *AuthServiceImpl) SignIn(ctx *fiber.Ctx) error {
-	// Read JWT token from the headers:
-	jwtToken, err := auth.FromRequest(ctx, c.authSettings)
+	// Read + parse JWT token from the headers:
+	jwtToken, _, err := auth.FromRequest(ctx, c.authSettings)
 	if err != nil {
 		return utilities.BadRequest(err.Error())
 	}
 
 	// Parse the token into a user:
-	userFromToken, err := auth.IntoUser(*jwtToken)
+	userFromToken, err := auth.IntoProviderUser(*jwtToken)
 	if err != nil {
 		return utilities.InternalServerError(err.Error())
 	}
 
 	// Check to see if the user exists:
-	user, err := userService.GetUserByIDFromDB(c.db, userFromToken.ID)
+	user, err := userService.GetUserByIDFromDB(c.db, userFromToken.Id)
 	if err != nil {
 		// Create a user if they don't exist:
 		err = userService.CreateUserInDB(c.db, *userFromToken)

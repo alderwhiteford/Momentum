@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"momentum/middleware"
 	"momentum/server/services/auth"
+	goalService "momentum/server/services/goal"
 	"momentum/server/services/user"
 	"momentum/server/storage"
 	"momentum/utilities"
@@ -15,6 +16,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/go-playground/validator/v10"
 )
 
 func createNewFiberApp() *fiber.App {
@@ -46,11 +48,15 @@ func initializeHealthCheck(app *fiber.App) {
 	});
 }
 
-func initializeServices(app *fiber.App, db *storage.PostgresDB, settings utilities.ApplicationSettings) {
+func initializeServices(app *fiber.App, db *storage.PostgresDB, settings utilities.ApplicationSettings, validator *validator.Validate ) {
 	// User service:
-	userService := userService.NewUserService(db);
+	userService := userService.NewUserService(db, validator);
 	userMiddleware := middleware.NewUser(settings.AuthSettings);
-	userService.InitializeRoutes(app, userMiddleware);
+	userByIdRouter := userService.InitializeRoutes(app, userMiddleware);
+
+	// Goal service:
+	goalService := goalService.NewGoalService(db)
+	goalService.InitializeRoutes(userByIdRouter)
 	
 	// Auth service:
 	authService := authService.NewAuthService(db, settings.AuthSettings);
@@ -78,13 +84,16 @@ func main() {
 	// Initialize the middleware:
 	initializeBaseMiddleware(app, settings);
 	
-	// Initialize the database
+	// Initialize the database:
 	db := storage.NewPostgresDB(settings.Database);
 	defer db.Close()
 
+	// Initialize custom validators:
+	validator := utilities.NewValidator()
+
 	// Initialize the handlers:
 	initializeHealthCheck(app);
-	initializeServices(app, db, settings);
+	initializeServices(app, db, settings, validator);
 
 	// Start the server:
 	go func() {

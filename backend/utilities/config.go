@@ -20,6 +20,9 @@ type DatabaseSettings = struct {
 
 type AuthSettings = struct {
 	JwtSecret string
+	AdminToken string
+	APIUrl string
+	APIKey string
 }
 
 type ApplicationSettings = struct {
@@ -90,7 +93,7 @@ func configProdDatabase() (*DatabaseSettings, error) {
 		return nil, errors.New("database port not set");
 	}
 	name := os.Getenv("DB_NAME");
-	if name == "" {
+	if name == "" { 
 		return nil, errors.New("database name not set");
 	}
 	username := os.Getenv("DB_USERNAME");
@@ -107,6 +110,7 @@ func configProdDatabase() (*DatabaseSettings, error) {
 		Port: port,
 		Username: username,
 		Password: password,
+		Name: name,
 	}
 
 	return &databaseSettings, nil;
@@ -117,9 +121,27 @@ func configAuth() (*AuthSettings, error) {
 	if jwtSecret == "" {
 		return nil, errors.New("JWT Secret not set");
 	}
+
+	adminToken := os.Getenv("SUPABASE_ADMIN_TOKEN");
+	if adminToken == "" {
+		return nil, errors.New("admin token not set")
+	}
+
+	apiUrl := os.Getenv("SUPABASE_API_URL");
+	if apiUrl == "" {
+		return nil, errors.New("supabase url not set")
+	}
+
+	apiKey := os.Getenv("SUPABASE_API_KEY");
+	if apiKey == "" {
+		return nil, errors.New("supabase api key not set")
+	}
 	
 	authSettings := AuthSettings{
 		JwtSecret: jwtSecret,
+		AdminToken: adminToken,
+		APIUrl: apiUrl,
+		APIKey: apiKey,
 	}
 
 	return &authSettings, nil;
