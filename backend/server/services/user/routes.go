@@ -14,6 +14,7 @@ func (c *UserServiceImpl) InitializeRoutes(app *fiber.App, userMiddleware fiber.
 
 	usersById.Get("/", c.GetUser)
 	usersById.Patch("/", c.UpdateUser)
+	usersById.Delete("/", c.DeleteUser)
 
 	return usersById
 }

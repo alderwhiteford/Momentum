@@ -9,4 +9,5 @@ func (c *GoalServiceImpl) InitializeRoutes(app fiber.Router) {
 	goal := app.Group("/goal");
 	
 	goal.Post("/", c.CreateGoal)
+	goal.Patch("/", )
 }

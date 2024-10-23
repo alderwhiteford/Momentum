@@ -11,9 +11,11 @@ import (
 
 type UserService interface { 
 	InitializeRoutes(app *fiber.App, middleware fiber.Handler) fiber.Router
+
 	GetAllUsers(ctx *fiber.Ctx) error
 	GetUser(ctx *fiber.Ctx) error
 	UpdateUser(ctx *fiber.Ctx) error
+	DeleteUser(ctx *fiber.Ctx) error
 }
 
 type UserServiceImpl struct {
@@ -32,7 +34,7 @@ func (c *UserServiceImpl) GetAllUsers(ctx *fiber.Ctx) error {
 		return utilities.InternalServerError(err.Error());
 	}
 
-	return ctx.Status(200).JSON(users);
+	return ctx.Status(fiber.StatusOK).JSON(users);
 }
 
 // Retrieve a user by their id:
@@ -50,7 +52,7 @@ func (c *UserServiceImpl) GetUser(ctx *fiber.Ctx) error {
 		return utilities.BadRequest(err.Error())
 	}
 
-	return ctx.Status(200).JSON(&user)
+	return ctx.Status(fiber.StatusOK).JSON(&user)
 }
 
 // Update a user:
@@ -65,7 +67,7 @@ func (c *UserServiceImpl) UpdateUser(ctx *fiber.Ctx) error {
 	
 	var updateRequestBody UpdateUser
 	if err := ctx.BodyParser(&updateRequestBody); err != nil {
-		return utilities.BadRequest(err.Error())
+		return utilities.BadRequest("failed to parse request body")
 	}
 
 	err = utilities.Validate(c.validator, updateRequestBody)
@@ -73,5 +75,25 @@ func (c *UserServiceImpl) UpdateUser(ctx *fiber.Ctx) error {
 		return utilities.BadRequest(err.Error())
 	}
 
-	return UpdateUserInDB(c.db, uuid, updateRequestBody)
+	if err = UpdateUserInDB(c.db, uuid, updateRequestBody); err != nil {
+		return err
+	}
+
+	return ctx.SendStatus(fiber.StatusOK)
+}
+
+// Delete a user:
+func (c *UserServiceImpl) DeleteUser(ctx *fiber.Ctx) error {
+	pathUserID := ctx.Params("id")
+
+	uuid, err := uuid.Parse(pathUserID)
+	if err != nil {
+		return utilities.BadRequest("invalid id")
+	}
+
+	if err = DeleteUserInDB(c.db, uuid); err != nil {
+		return err
+	}
+
+	return ctx.SendStatus(fiber.StatusOK)
 }
