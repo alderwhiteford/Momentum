@@ -8,12 +8,46 @@ import (
 	"github.com/google/uuid"
 )
 
-func BuildUpdateQuery(dbTable string, id uuid.UUID, updates interface{}) (*string, []interface{}, error) {
-	val := reflect.ValueOf(updates)
-	if val.Kind() == reflect.Ptr {
-		val = val.Elem()
+func BuildCreateQuery(dbTable string, item interface{}) (*string, error) {
+	val, typ := extractValAndType(item)
+
+	var dbColumnClauses []string
+	
+	for i := 0 ; i < val.NumField() ; i++ {
+		field := val.Field(i)
+
+		if !field.CanInterface() {
+			continue
+		}
+
+		dbTag := typ.Field(i).Tag.Get("db")
+		if dbTag == "" || dbTag == "-" {
+			continue
+		}
+
+		if field.IsZero() {
+			continue
+		}
+
+		dbColumnClauses = append(dbColumnClauses, dbTag)
 	}
-	typ := val.Type()
+
+	if len(dbColumnClauses) == 0 {
+		return nil, fmt.Errorf("there are no fields to insert into the database")
+	}
+
+	query := fmt.Sprintf(
+		"INSERT INTO %s (%s) VALUES (%s)",
+		dbTable,
+		strings.Join(dbColumnClauses, ", "),
+		fmt.Sprintf(":%s", strings.Join(dbColumnClauses, ", :")),
+	)
+
+	return &query, nil
+}
+
+func BuildUpdateQuery(dbTable string, id uuid.UUID, updates interface{}) (*string, []interface{}, error) {
+	val, typ := extractValAndType(updates)
 
 	var dbSetClauses []string
 	var args []interface{}
@@ -62,4 +96,13 @@ func BuildUpdateQuery(dbTable string, id uuid.UUID, updates interface{}) (*strin
 	args = append(args, id)
 
 	return &query, args, nil
+}
+
+func extractValAndType(item interface{}) (reflect.Value, reflect.Type) {
+	val := reflect.ValueOf(item)
+	if val.Kind() == reflect.Ptr {
+		val = val.Elem()
+	}
+
+	return val, val.Type()
 }

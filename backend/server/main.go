@@ -55,7 +55,7 @@ func initializeServices(app *fiber.App, db *storage.PostgresDB, settings utiliti
 	userByIdRouter := userService.InitializeRoutes(app, userMiddleware);
 
 	// Goal service:
-	goalService := goalService.NewGoalService(db)
+	goalService := goalService.NewGoalService(db, validator)
 	goalService.InitializeRoutes(userByIdRouter)
 	
 	// Auth service:

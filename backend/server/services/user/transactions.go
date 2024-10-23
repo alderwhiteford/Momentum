@@ -21,7 +21,7 @@ func GetAllUsersFromDB(db *storage.PostgresDB) ([]User, error) {
 
 func GetUserByIDFromDB(db *storage.PostgresDB, id uuid.UUID) (*User, error) {
 	var user User
-	err := db.Get(&user, "SELECT * FROM users WHERE user_id = $1", id)
+	err := db.Get(&user, "SELECT * FROM users WHERE id = $1", id)
 	if err != nil {
 		return nil, err
 	}
@@ -30,7 +30,7 @@ func GetUserByIDFromDB(db *storage.PostgresDB, id uuid.UUID) (*User, error) {
 }
 
 func CreateUserInDB(db *storage.PostgresDB, user User) error {
-	_, err := db.NamedExec("INSERT INTO users (user_id, provider, email, name) VALUES (:user_id, :provider, :email, :name)", user)
+	_, err := db.NamedExec("INSERT INTO users (id, provider, email, name) VALUES (:id, :provider, :email, :name)", user)
 	if err != nil {
 		return err
 	}
@@ -55,6 +55,23 @@ func UpdateUserInDB(db *storage.PostgresDB, id uuid.UUID, updateUser UpdateUser)
 	}
 	if rows == 0 {
 		return utilities.BadRequest(fmt.Sprintf("failed to find user in db with id: %s", id))
+	}
+
+	return nil
+}
+
+func DeleteUserInDB(db *storage.PostgresDB, id uuid.UUID) error {
+	result, err := db.Exec("DELETE FROM users WHERE id = $1", id)
+	if err != nil {
+		return utilities.BadRequest(fmt.Sprintf("error executing delete: %s", err.Error()))
+	}
+
+	rows, err := result.RowsAffected()
+	if err != nil {
+		return utilities.InternalServerError(fmt.Sprintf("something went wrong: %s", err.Error()))
+	}
+	if rows == 0 {
+		return utilities.BadRequest(fmt.Sprintf("user does not exist: %s", id))
 	}
 
 	return nil

@@ -28,4 +28,3 @@ func validateTimeZone(fl validator.FieldLevel) bool {
 	_, err := time.LoadLocation(fl.Field().String())
 	return err == nil
 }
-
