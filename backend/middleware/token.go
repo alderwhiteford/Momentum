@@ -9,7 +9,8 @@ import (
 
 func NewToken(settings utilities.AuthSettings) fiber.Handler {
 	publicEndpoints := []string{
-		"/auth/signin",
+		"/auth/signin/email",
+		"/auth/signup/email",
 	}
 
 	return func(ctx *fiber.Ctx) error {
@@ -20,9 +21,16 @@ func NewToken(settings utilities.AuthSettings) fiber.Handler {
 			}
 		}
 	
-		jwtToken, err := auth.FromRequest(ctx, settings)
+		// Parse the token from the request
+		jwtToken, isAdmin, err := auth.FromRequest(ctx, settings)
 		if err != nil {
 			return utilities.Unauthorized(err.Error())
+		}
+
+		// Set the locals to check if user is an admin:
+		ctx.Locals("is_admin", isAdmin)
+		if isAdmin {
+			return ctx.Next()
 		}
 
 		// Parse the role from the token:
@@ -31,13 +39,14 @@ func NewToken(settings utilities.AuthSettings) fiber.Handler {
 			return utilities.InternalServerError(err.Error())
 		}
 
-		// Find the userID from context:
-		userID := role
-		if role == "authenticated" {
-			userID, err = auth.GetUserIDFromClaims(jwtToken.Claims)
-			if err != nil {
-				return utilities.InternalServerError(err.Error())
-			}
+		// Check to see if the user is authenticated
+		if role != "authenticated" {
+			return utilities.Unauthorized("Unauthorized")
+		}
+
+		userID, err := auth.GetUserIDFromClaims(jwtToken.Claims)
+		if err != nil {
+			return utilities.InternalServerError(err.Error())
 		}
 
 		// Instantiate the userID in the context:

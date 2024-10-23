@@ -4,9 +4,16 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func (c *UserServiceImpl) InitializeRoutes(app *fiber.App, middleware fiber.Handler) {
-	users := app.Group("/users");
-	users.Use(middleware)
+func (c *UserServiceImpl) InitializeRoutes(app *fiber.App, userMiddleware fiber.Handler) fiber.Router {
+	users := app.Group("/user");
+	usersById := users.Group("/:id")
+	
+	users.Use(userMiddleware)
 	
 	users.Get("/", c.GetAllUsers)
+
+	usersById.Get("/", c.GetUser)
+	usersById.Patch("/", c.UpdateUser)
+
+	return usersById
 }

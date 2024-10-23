@@ -9,6 +9,12 @@ import (
 
 func NewUser(settings utilities.AuthSettings) fiber.Handler {
 	return func(ctx *fiber.Ctx) error {
+		// Check to see if the current user is an admin:
+		isAdmin := ctx.Locals("is_admin")
+		if isAdmin == true {
+			return ctx.Next()
+		}
+		
 		// Get the userID from the context:
 		userID := ctx.Locals("user_id")
 		if userID == nil {

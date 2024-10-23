@@ -24,6 +24,7 @@ func DBConnectionString(settings utilities.DatabaseSettings) string {
 
 func NewPostgresDB(settings utilities.DatabaseSettings) *PostgresDB {
 	fmt.Println(DBConnectionString(settings))
+	fmt.Println(settings.Name)
 	db := &PostgresDB{*sqlx.MustConnect("postgres", DBConnectionString(settings))}
 	fmt.Printf("Listening to the database on host: %s, post: %s\n", settings.Host, settings.Port);
 	return db

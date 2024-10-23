@@ -7,28 +7,34 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v5"
+	"github.com/google/uuid"
 )
 
-func FromRequest(ctx *fiber.Ctx, settings utilities.AuthSettings) (*jwt.Token, error) {
+func FromRequest(ctx *fiber.Ctx, settings utilities.AuthSettings) (*jwt.Token, bool, error) {
 	// Read JWT token from the headers:
 	headers := ctx.GetReqHeaders()
 	authorizationHeaders := headers["Authorization"]
 	if len(authorizationHeaders) == 0 {
-		return nil, fmt.Errorf("no token provided")
+		return nil, false, fmt.Errorf("no token provided")
 	}
 
 	token := authorizationHeaders[0]
 	if token == "" {
-		return nil, fmt.Errorf("no token provided")
+		return nil, false, fmt.Errorf("no token provided")
+	}
+
+	// Check to see if the token is the admin:
+	if token == settings.AdminToken {
+		return nil, true, nil
 	}
 
 	// Verify the token:
 	jwtToken, err := verifyToken(token, settings.JwtSecret)
 	if err != nil {
-		return nil, fmt.Errorf("invalid token")
+		return nil, false, fmt.Errorf("invalid token")
 	}
 
-	return jwtToken, nil
+	return jwtToken, false, nil
 }
 
 func GetRoleFromToken(token jwt.Token) (string, error) {
@@ -45,21 +51,26 @@ func GetRoleFromToken(token jwt.Token) (string, error) {
 	return role, nil
 }
 
-func GetUserIDFromClaims(claims jwt.Claims) (string, error) {
+func GetUserIDFromClaims(claims jwt.Claims) (*uuid.UUID, error) {
 	claims, ok := claims.(jwt.MapClaims)
 	if !ok {
-		return "", fmt.Errorf("failed to parse claims")
+		return nil, fmt.Errorf("failed to parse claims")
 	}
 
 	userID, err := claims.GetSubject()
 	if err != nil {
-		return "", fmt.Errorf("failed to parse user ID")
+		return nil, fmt.Errorf("failed to parse user ID")
 	}
 
-	return userID, nil
+	userIDAsUUID, err := uuid.Parse(userID)
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse user ID")
+	}
+
+	return &userIDAsUUID, nil
 }
 
-func IntoUser(token jwt.Token) (*userService.User, error) {
+func IntoProviderUser(token jwt.Token) (*userService.User, error) {
 	claims, ok := token.Claims.(jwt.MapClaims)
 	if !ok {
 		return nil, fmt.Errorf("failed to parse claims")
@@ -98,11 +109,17 @@ func IntoUser(token jwt.Token) (*userService.User, error) {
 		return nil, fmt.Errorf("failed to parse provider")
 	}
 
+	parsedProvider := userService.Provider(provider)
+
 	return &userService.User{
-		ID: userID,
-		Provider: userService.Provider(provider),
-		Email: email,
-		Name: name,
+		BaseModel: utilities.BaseModel{
+			Id: *userID,
+		},
+		UserBaseModel: userService.UserBaseModel{
+			Provider: parsedProvider,
+			Email: email,
+			Name: name,
+		},
 	}, nil
 }
 
@@ -129,5 +146,3 @@ func verifyToken(token string, secret string) (*jwt.Token, error) {
 
 	return jwtToken, nil
 }
-
-
