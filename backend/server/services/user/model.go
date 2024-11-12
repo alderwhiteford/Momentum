@@ -10,9 +10,9 @@ const (
 
 type UserBaseModel struct {
 	Provider Provider `json:"provider" db:"provider"`
-	Email    string    `json:"email" db:"email" validate:"required"`
-	Name     string    `json:"name" db:"name" validate:"required"`
-	TimeZone string    `json:"timezone" validate:"timezone"`
+	Email    string   `json:"email" db:"email" validate:"required"`
+	Name     string   `json:"name" db:"name" validate:"required"`
+	TimeZone string   `json:"timezone" validate:"timezone"`
 }
 
 type User struct {
