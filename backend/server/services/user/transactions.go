@@ -1,7 +1,7 @@
 package userService
 
 import (
-	"fmt"
+	goalService "momentum/server/services/goal"
 	"momentum/server/storage"
 	"momentum/utilities"
 
@@ -10,28 +10,24 @@ import (
 
 func GetAllUsersFromDB(db *storage.PostgresDB) ([]User, error) {
 	users := []User{}
-	err := db.Select(&users, "SELECT * FROM users")
-
-	if err != nil {
+	if err := storage.InitializeSelectionOnAll(db, "users", users); err != nil {
 		return nil, err
 	}
-
 	return users, nil
 }
 
 func GetUserByIDFromDB(db *storage.PostgresDB, id uuid.UUID) (*User, error) {
 	var user User
-	err := db.Get(&user, "SELECT * FROM users WHERE id = $1", id)
-	if err != nil {
+	if err := storage.InitializeSingleSelectionOnEntity(db, "users", user, id); err != nil {
 		return nil, err
 	}
-
 	return &user, nil
 }
 
 func CreateUserInDB(db *storage.PostgresDB, user User) error {
-	_, err := db.NamedExec("INSERT INTO users (id, provider, email, name) VALUES (:id, :provider, :email, :name)", user)
-	if err != nil {
+	query, _ := storage.BuildCreateQuery("users", user)
+
+	if err := storage.InitializeCreation(db, *query, user); err != nil {
 		return err
 	}
 
@@ -39,39 +35,40 @@ func CreateUserInDB(db *storage.PostgresDB, user User) error {
 }
 
 func UpdateUserInDB(db *storage.PostgresDB, id uuid.UUID, updateUser UpdateUser) error {
-	updateQuery, args, err := utilities.BuildUpdateQuery("users", id, updateUser)
+	updateQuery, args, err := storage.BuildUpdateQuery("users", id, updateUser)
 	if err != nil {
 		return utilities.BadRequest(err.Error())
 	}
 
-	result, err := db.Exec(*updateQuery, args...)
-	if err != nil {
-		return utilities.BadRequest(fmt.Sprintf("error executing update: %s", err.Error()))
-	}
-
-	rows, err := result.RowsAffected()
-	if err != nil {
-		return utilities.InternalServerError(fmt.Sprintf("something went wrong: %s", err.Error()))
-	}
-	if rows == 0 {
-		return utilities.BadRequest(fmt.Sprintf("failed to find user in db with id: %s", id))
+	if err := storage.InitializeMutation(db, *updateQuery, args); err != nil {
+		return err
 	}
 
 	return nil
 }
 
 func DeleteUserInDB(db *storage.PostgresDB, id uuid.UUID) error {
-	result, err := db.Exec("DELETE FROM users WHERE id = $1", id)
-	if err != nil {
-		return utilities.BadRequest(fmt.Sprintf("error executing delete: %s", err.Error()))
+	if err := storage.InitializeDeletion(db, "users", id); err != nil {
+		return err
+	}
+	
+	return nil
+}
+
+func GetUserGoalsInDB(db *storage.PostgresDB, id uuid.UUID) ([]goalService.Goal, error) {
+	goals := []goalService.Goal{}
+	if err := storage.InitializeMultiSelectionOnEntity(db, "goal", goals, id, "user_id"); err != nil {
+		return nil, err
 	}
 
-	rows, err := result.RowsAffected()
-	if err != nil {
-		return utilities.InternalServerError(fmt.Sprintf("something went wrong: %s", err.Error()))
-	}
-	if rows == 0 {
-		return utilities.BadRequest(fmt.Sprintf("user does not exist: %s", id))
+	return goals, nil
+}
+
+func CreateUserGoalInDB(db *storage.PostgresDB, goal goalService.Goal) error {
+	query, _ := storage.BuildCreateQuery("goal", goal)
+
+	if err := storage.InitializeCreation(db, *query, goal); err != nil {
+		return err
 	}
 
 	return nil

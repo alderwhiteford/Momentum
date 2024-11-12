@@ -3,7 +3,7 @@ package authService
 import "github.com/gofiber/fiber/v2"
 
 func (c *AuthServiceImpl) InitializeRoutes(app *fiber.App) {
-	users := app.Group("/auth");
+	auth := app.Group("/auth");
 	
-	users.Post("/signin/google", c.SignIn)
+	auth.Post("/signin/google", c.SignIn)
 }

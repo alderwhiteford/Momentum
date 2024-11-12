@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"momentum/middleware"
+	userMiddleware "momentum/middleware/user"
+	authMiddleware "momentum/middleware/auth"
 	"momentum/server/services/auth"
 	goalService "momentum/server/services/goal"
 	"momentum/server/services/user"
@@ -14,9 +15,9 @@ import (
 
 	go_json "github.com/goccy/go-json"
 
+	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
-	"github.com/go-playground/validator/v10"
 )
 
 func createNewFiberApp() *fiber.App {
@@ -39,7 +40,7 @@ func initializeBaseMiddleware(app *fiber.App, settings utilities.ApplicationSett
 	}))
 
 	// Middleware for validating tokens:
-	app.Use(middleware.NewToken(settings.AuthSettings))
+	app.Use(authMiddleware.NewToken(settings.AuthSettings))
 }
 
 func initializeHealthCheck(app *fiber.App) {
@@ -49,14 +50,17 @@ func initializeHealthCheck(app *fiber.App) {
 }
 
 func initializeServices(app *fiber.App, db *storage.PostgresDB, settings utilities.ApplicationSettings, validator *validator.Validate ) {
+	// Middleware:
+	adminMiddleware := authMiddleware.NewAdmin()
+	userMiddleware := userMiddleware.NewUser(settings.AuthSettings);
+	
 	// User service:
 	userService := userService.NewUserService(db, validator);
-	userMiddleware := middleware.NewUser(settings.AuthSettings);
-	userByIdRouter := userService.InitializeRoutes(app, userMiddleware);
+	userService.InitializeRoutes(app, userMiddleware, adminMiddleware);
 
 	// Goal service:
 	goalService := goalService.NewGoalService(db, validator)
-	goalService.InitializeRoutes(userByIdRouter)
+	goalService.InitializeRoutes(app, adminMiddleware)
 	
 	// Auth service:
 	authService := authService.NewAuthService(db, settings.AuthSettings);

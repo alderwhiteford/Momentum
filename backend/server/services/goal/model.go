@@ -23,11 +23,11 @@ type GoalBaseModel struct {
 }
 
 type UpdateGoal struct {
-	CompletedAt           *string          `json:"completed_at,omitempty" db:"completed_at"`
-	Description           string           `json:"description" db:"description" validate:"required"`
-	EstimatedCompletionAt string           `json:"estimated_completion_at" db:"estimated_completion_at" validate:"required"`
-	TheWhy                string           `json:"the_why" db:"the_why" validate:"required"`
-	WhenSuccess           SuccessIndicator `json:"when_success" db:"when_success" validate:"required,oneof=COMPLETION TARGET SATISFIED"`
+	CompletedAt           string          `json:"completed_at,omitempty" db:"completed_at"`
+	Description           string           `json:"description,omitempty" db:"description" validate:"required"`
+	EstimatedCompletionAt string           `json:"estimated_completion_at,omitempty" db:"estimated_completion_at" validate:"required"`
+	TheWhy                string           `json:"the_why,omitempty" db:"the_why" validate:"required"`
+	WhenSuccess           SuccessIndicator `json:"when_success,omitempty" db:"when_success" validate:"required,oneof=COMPLETION TARGET SATISFIED"`
 }
 
 type Goal struct {

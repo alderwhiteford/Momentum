@@ -4,17 +4,23 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func (c *UserServiceImpl) InitializeRoutes(app *fiber.App, userMiddleware fiber.Handler) fiber.Router {
-	users := app.Group("/user");
-	usersById := users.Group("/:id")
-	
-	users.Use(userMiddleware)
-	
-	users.Get("/", c.GetAllUsers)
+func (c *UserServiceImpl) InitializeRoutes(app *fiber.App, userMiddleware fiber.Handler, adminMiddleware fiber.Handler) {
+	user := app.Group("/user");
 
-	usersById.Get("/", c.GetUser)
-	usersById.Patch("/", c.UpdateUser)
-	usersById.Delete("/", c.DeleteUser)
+	// ADMIN ROUTES:
+	user.Get("/", adminMiddleware, c.GetAllUsers)
 
-	return usersById
+	// ENTITY SPECIFIC
+	userById := user.Group("/:userId")
+	userById.Use(userMiddleware)
+
+	userById.Get("/", c.GetUser)
+	userById.Patch("/", c.UpdateUser)
+	userById.Delete("/", c.DeleteUser)
+
+	// ENTITY RELATIONSHIPS
+	userGoals := userById.Group("/:goalId")
+
+	userGoals.Get("/", c.GetUserGoals)
+	userGoals.Post("/", c.CreateUserGoal)
 }
